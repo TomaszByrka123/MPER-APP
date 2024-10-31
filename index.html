@@ -7,6 +7,10 @@
 
     <!-- Dodaję lokalną ścieżkę do pliku CSS z czcionką -->
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="settings.css">
+
+    <!--Style do biblioteki mapy-->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
 
     <!-- CDN do nipplejs -->
     <script src="library/nipplejs.min.js"></script>
@@ -15,10 +19,11 @@
 
     <div class="menu">
         <button class="tab-button active" onclick="openTab(event, 'main')">Menu główne</button>
-        <button class="tab-button" onclick="openTab(event, 'joystick')">Sterowanie</button>
-        <button class="tab-button" onclick="openTab(event, 'joystick')">Nawigacja</button>
+        <button class="tab-button" onclick="openTab(event, 'joystick')">Jazda</button>
+        <button class="tab-button" onclick="openTab(event, 'manipulator')">Manipulator</button>
+        <button class="tab-button" onclick="openTab(event, 'navigation')">Nawigacja</button>
         <button class="tab-button" onclick="openTab(event, 'joystick')">Czujniki</button>
-        <button class="tab-button" onclick="openTab(event, 'joystick')">Ustawienia</button>
+        <button class="tab-button" onclick="openTab(event, 'settings')">Ustawienia</button>
     </div>
 
     <div id="main" class="tab-content active">
@@ -27,11 +32,68 @@
     </div>
 
     <div id="joystick" class="tab-content">
-        <h2>Wirtualny Joystick</h2>
+        <img id="image" src="http://10.42.0.1:8000/stream.mjpg" alt="Uruchom program camera_pi.py w nowym terminalu aby otrzymac obraz z kamery" style="margin-top: 40px;"><br/>
         <div id="joystick-container" class="joystick-container"></div>
     </div>
 
+    <div id="manipulator" class="tab-content">
+        <div style="top: 0; position: fixed; left: 50%; transform: translateX(-50%); margin-top: 10%;">
+            <button id="leftCrush" class="crush-button"><img src="./icons/minimise.png" class="crush-icons" loading="eager"/></button>
+            <button id="rightCrush" class="crush-button"><img src="./icons/maximize.png" class="crush-icons" loading="eager"/></button>
+        </div>
+
+        <div id="joystick-manipulator-A-container">
+            <div id="joystick"></div>
+        </div>
+
+        <div id="joystick-manipulator-B-container">
+            <div id="joystick"></div>
+        </div>
+
+        <div style="bottom: 0; position: fixed; left: 50%; transform: translateX(-50%); margin-bottom: 10%;">
+            <button id="leftBtn" class="gripper-button"><img src="./icons/back.png" class="arrow-icons" loading="eager"/></button>
+            <button id="rightBtn" class="gripper-button"><img src="./icons/next.png" class="arrow-icons" loading="eager"/></button>
+        </div>
+
+        <button id="homeManipButton"><img src="./icons/home-manip.png" class="arrow-icons" loading="eager"/></button>   
+    </div>
+
+    <div id="navigation" class="tab-content">
+        <div id="map"></div>
+        <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    </div>
+
+    <div id="settings" class="tab-content">
+        <div style="margin-top: 30px;">
+            <label class="switch" style="display: inline-block; margin-right: 20px; vertical-align: middle;">
+                <input type="checkbox" checked>
+                <span class="slider red"></span>
+            </label>
+            <h3 style="display: inline-block; margin-top: 20px; vertical-align: middle;">Oświetlenie przednie </h3>
+        </div>
+        
+        <div>
+            <label class="switch" style="display: inline-block; margin-right: 20px; vertical-align: middle;">
+                <input type="checkbox" checked>
+                <span class="slider red"></span>
+            </label>
+            <h3 style="display: inline-block; margin-top: 20px; vertical-align: middle;">Oświetlenie dolne </h3>
+        </div>
+        
+        <div>
+            <label class="switch" style="display: inline-block; margin-right: 20px; vertical-align: middle;">
+                <input type="checkbox" checked>
+                <span class="slider red"></span>
+            </label>
+            <h3 style="display: inline-block; margin-top: 20px; vertical-align: middle;">Oświetlenie tylne </h3>
+        </div>
+    </div>
+
     <!-- Link do pliku JavaScript -->
+    <script src="funkcje.js"></script>
+    <script src="navigation.js"></script>
+    <script src="joystick.js"></script>
+    <script src="manipulator.js"></script>
     <script src="app.js"></script>
 
 </body>

@@ -1,0 +1,70 @@
+/* Stylowanie kontenera przełącznika */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+/* Stylowanie tła przełącznika */
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+/* Stylowanie włączonego tła przełącznika */
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 34px;
+}
+
+/* Stylowanie kółka przesuwającego się po włączeniu przełącznika */
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+/* Stylowanie włączonego tła przełącznika */
+input:checked + .slider {
+    background-color: #2196F3;
+}
+
+/* Stylowanie kółka przesuwającego się po włączeniu przełącznika */
+input:checked + .slider:before {
+    transform: translateX(26px);
+}
+
+/* Stylowanie tła przełącznika na zielono, gdy jest włączony */
+.slider.green {
+    background-color: #4CAF50;
+}
+
+/* Stylowanie kółka przesuwającego się po włączeniu przełącznika */
+.slider.green:before {
+    background-color: white;
+}
+
+/* Stylowanie tła przełącznika na czerwono, gdy jest włączony */
+.slider.red {
+    background-color: #F44336;
+}
+
+/* Stylowanie kółka przesuwającego się po włączeniu przełącznika */
+.slider.red:before {
+    background-color: white;
+}
